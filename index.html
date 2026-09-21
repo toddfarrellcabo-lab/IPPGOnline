@@ -3,54 +3,51 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>IPPGOnline</title>
+<title>IPPGOnline Print Master</title>
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<header class="app-header">
-  <div><strong>IPPGOnline</strong><span>Internet Plans Pricing Guide</span></div>
-  <button id="printBtn">Print IPPG</button>
-</header>
-<main>
-  <aside class="controls">
-    <h1>Build an IPPG</h1>
-    <p class="intro">Choose a configuration and effective date. Current offers are applied automatically.</p>
-    <label>IPPG Configuration<select id="configSelect"></select></label>
-    <label>Effective Date<input id="effectiveDate" type="date" value="2026-10-15"></label>
-    <section class="summary">
-      <h2>Resolved Data</h2>
-      <div><small>RATE CARD</small><strong id="rateCardName"></strong></div>
-      <div><small>MODIFIERS</small><span id="modifierList"></span></div>
-      <div><small>ACTIVE OFFERS</small><span id="offerList"></span></div>
-    </section>
-    <p class="prototype">Prototype data only. Rates, legal copy and configuration mappings require production verification.</p>
-  </aside>
+<div class="app-shell">
+  <div class="toolbar">
+    <strong>IPPGOnline</strong>
+    <label><input id="fiberToggle" type="checkbox"> Fiber</label>
+    <label><input id="equipmentToggle" type="checkbox" checked> Equipment Included</label>
+    <button id="printBtn" type="button">Save / Print PDF</button>
+  </div>
 
-  <section class="preview-wrap">
-    <div class="sheet" id="sheet">
-      <div class="topline"><div class="brand">SPARKLIGHT</div></div>
-      <div class="hero">
-        <div>
-          <h2>Choose Your Fiber-Fueled Speed.</h2>
-          <p>UNLIMITED DATA. NO CONTRACTS. WI-FI POWERED BY EERO.</p>
-        </div>
-        <div class="hero-mark">INTERNET<br>THAT FITS<br>YOUR LIFE.</div>
-      </div>
-      <div id="plans" class="plans"></div>
-      <div id="promoBox" class="promo-box" hidden></div>
-      <div id="featureBox" class="features"></div>
-      <div class="cta">
-        <div><strong>Find the speed that's right for you.</strong><br><span>Ask your Sparklight representative for details.</span></div>
-        <div class="qr">QR</div>
-      </div>
-      <div class="legal">
-        <strong>Offer details</strong>
-        <p id="legalText">Prototype: final approved legal copy will be populated from the production legal source.</p>
-      </div>
-      <div class="footer"><strong>SPARKLIGHT</strong><span id="configCode"></span></div>
+  <main class="preview-stage">
+    <div class="preview-scaler" id="previewScaler">
+      <article class="page" id="ippgPage">
+        <header class="header">
+          <h1>Choose Your<br><span id="fiberWord">Fiber-Fueled</span> Speed.</h1>
+          <div class="reasons">
+            <span id="equipmentCopy" class="equipment">EQUIPMENT INCLUDED.</span>
+            <span>UNLIMITED DATA. NO CONTRACTS. WI-FI POWERED BY EERO.</span>
+          </div>
+        </header>
+
+        <section class="data-layer" id="dataLayer">
+          <!-- IPPG speed, price, promo and legal modules render here next. -->
+        </section>
+
+        <img class="spark-art" src="assets/Spark_612x450.png" alt="">
+
+        <footer class="footer">
+          <img class="awfy-logo" src="assets/Sparklight(R)-purple-cmyk_AWFY.png"
+               alt="Sparklight. Always working for you.">
+          <div class="footer-right">
+            <div class="footer-copy">
+              <div>Scan, call 1.855.692.4116</div>
+              <div>or visit Sparklight.com</div>
+            </div>
+            <img class="qr" src="assets/Sparklight_QR_60x60.jpg"
+                 alt="QR code to Sparklight Internet">
+          </div>
+        </footer>
+      </article>
     </div>
-  </section>
-</main>
+  </main>
+</div>
 <script src="app.js"></script>
 </body>
 </html>
