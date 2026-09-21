@@ -1,40 +1,39 @@
-# IPPGOnline V0.1
+# IPPGOnline V0.2 — normalized Personaville data model
 
-A deliberately small prototype for rendering customer-facing Internet Plans Pricing Guides (IPPGs).
+This version converts the existing scheduled Personaville knowledge into an IPPG-oriented model.
 
-## V1 flow
-Select configuration -> resolve rate card/modifiers -> apply offers by effective date -> render letter-size IPPG -> print.
+## Core model
+Configuration + active offer overlays -> rendered IPPG.
+
+Promotional buckets are no longer the identity of the document. The source Personaville scheduled records are collapsed into 18 working IPPG configurations based on:
+- source FamilyGroup
+- base rate card
+- equipment/symmetrical/fiber flags and family-name modifiers
+- available speed lineup
+- rack rates
+- upload-speed pattern
+
+## Source-derived configuration concepts
+Base rate cards normalize to:
+Core, CoreMax, Enhanced, EnhancedMax, Edge, EdgeMax.
+
+Universal modifiers currently inferred/preserved:
+Expansion Markets, HHI, Up to 1 Gig, Normal Speeds, Equipment Included, Symmetrical Speeds, Fiber.
+
+## Q4 overlays
+- 1 Gig: $50 for 24 months
+- 2 Gig: $65 for 24 months
+- EdgeMax 2 Gig exception: $60
+- eero Plus: FREE for 3 months for qualifying 1 Gig+ service during the campaign window
+
+## Important production guardrails
+This is a working data model, not final approved customer data.
+- Legal remains placeholder-only until verified against the production legal tracker.
+- Town/market-to-configuration mapping is not yet loaded.
+- Price Lock is preserved in Personaville source history but is not modeled as a current Q4 offer because the supplied Q4 acquisition sheet does not establish it.
+- The eero campaign timeline date is used as 2026-11-22; the supplied legal transcription had a conflicting 11/22/27 expiration and must be verified.
+- Q4 lower-tier promotional/first-paid pricing from old promo buckets is not treated as a universal current offer. Rack rates and speed availability come from the scheduled Personaville structure; Q4 1G/2G overrides come from the acquisition material.
 
 ## Run
-Because the app loads JSON with fetch(), serve the folder with a simple local web server.
-Example:
     python -m http.server 8000
-Then open:
-    http://localhost:8000
-
-## What is intentionally included
-- IPPG configuration selector
-- Effective-date selector
-- Six Q4 rate-card families
-- Working modifier/configuration examples
-- Q4 2026 1 Gig and 2 Gig acquisition offer logic
-- Edge Max 2 Gig $60 exception
-- eero Plus 1 Gig+ eligibility/date logic
-- Live 8.5 x 11 portrait HTML/CSS preview
-- Print stylesheet for Letter portrait
-
-## What is intentionally NOT production-ready
-- Legal copy is placeholder text.
-- Only 1 Gig and 2 Gig are seeded because those are the rates supported by the supplied Q4 acquisition sheet used for this prototype.
-- Lower speed tiers must be added from verified rate-card/configuration data.
-- Configuration-to-market mapping is not yet included.
-- Sparklight production artwork, QR destination, fonts, and final creative styling are not yet wired in.
-- The eero date is set to 2026-11-22 based on the campaign timeline. The supplied disclaimer transcription contained an inconsistent 11/22/27 date and must be legally verified before production.
-
-## Data model
-data/ippg-data.json contains:
-- rateCards
-- configurations
-- offers
-
-Promotions do not define configuration identity. They are applied at render time according to speed, effective date, rate card, and exceptions.
+Open http://localhost:8000
