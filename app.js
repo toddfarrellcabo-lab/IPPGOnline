@@ -34,26 +34,63 @@ function loadConfigurations(){
   cfg.value=state.personaId;
   render();
 }
+function priceParts(v){
+  if(v===null || v===undefined || v==="") return {whole:"",cents:""};
+  const n=Number(String(v).replace(/[^0-9.]/g,""));
+  if(Number.isNaN(n)) return {whole:String(v),cents:""};
+  const s=n.toFixed(2).split(".");
+  return {whole:s[0],cents:s[1]==="00" ? "" : s[1]};
+}
+function dealLockup(price, regular){
+  const p=priceParts(price);
+  return `<div class="price-lockup">
+    <div class="price-dollar">$</div>
+    <div class="price-whole">${p.whole}</div>
+    <div class="price-side">
+      <div class="price-cents">${p.cents ? p.cents+"*" : "*"}</div>
+      <div class="price-term">/mo. for 24 mos.</div>
+      <div class="price-regrate">Reg. rate ${money(regular)}/mo.</div>
+    </div>
+  </div>
+  <div class="price-required">Autopay &amp; Paperless billing required.</div>`;
+}
 function render(){
   const r=DB.records.find(x=>x.personaId===state.personaId);
   if(!r) return;
+
   state.equipmentIncluded=r.equipmentIncluded;
   document.getElementById("equipmentToggle").checked=state.equipmentIncluded;
   document.getElementById("equipmentCopy").hidden=!state.equipmentIncluded;
   document.getElementById("fiberWord").textContent=state.fiber ? "Fiber" : "Fiber-Fueled";
 
   const base=baseRateCard(r.familyGroup);
-  let html=`<div class="config-meta">${r.familyGroup} • ${r.pricingSet} • ${r.lifecycle}${r.symmetrical?" • Symmetrical":""}</div><div class="plan-stack">`;
-  r.speeds.forEach(p=>{
+  const rows=r.speeds.map(p=>{
     let q4=null;
     if(p.speed==="1 Gig" && base) q4=DB.q4.oneGig[base];
     if(p.speed==="2 Gig" && base) q4=DB.q4.twoGig[base];
-    const displayPrice=q4 ? q4.price : p.pricing;
-    html+=`<div class="plan-card"><div class="plan-top"><div class="plan-speed">${p.speed}</div><div class="plan-price">${q4?displayPrice:""}</div></div>
-      <div class="plan-reg">Rack rate: ${money(p.regularRate)}${!q4 && p.pricing ? " • "+p.pricing : ""}</div>
-      ${q4?`<div class="plan-q4">Q4 Acquisition: ${q4.price} for 24 months</div>`:""}</div>`;
+    return {p,q4};
+  });
+
+  // Acquisition/Q4 offer rows first; remaining plan choices follow.
+  rows.sort((a,b)=>(b.q4?1:0)-(a.q4?1:0));
+
+  let html=`<div class="plan-stack">`;
+  rows.forEach(({p,q4})=>{
+    if(q4){
+      html+=`<div class="plan-card great-deal">
+        <div class="deal-label">Great Deal</div>
+        <div class="plan-speed">${p.speed}</div>
+        ${dealLockup(q4.price,q4.regular || p.regularRate)}
+      </div>`;
+    }else{
+      html+=`<div class="plan-card">
+        <div class="plan-speed">${p.speed}</div>
+        <div class="plan-reg">Rack rate: ${money(p.regularRate)}${p.pricing ? " • "+p.pricing : ""}</div>
+      </div>`;
+    }
   });
   html+="</div>";
+
   const hasGigPlus=r.speeds.some(p=>p.speed==="1 Gig"||p.speed==="2 Gig");
   if(hasGigPlus) html+=`<img class="promo-preview" src="assets/SPK-_0001_persona-3MFree.png" alt="FREE eero Plus for 3 months">`;
   dataLayer.innerHTML=html;

@@ -98,13 +98,51 @@ h1{
   }
 }
 
-/* v4 connected-data preview modules */
-.plan-stack{position:absolute;left:0;top:40px;width:58%;display:grid;gap:12px;font-family:"IPPG Effra",sans-serif;color:var(--navy)}
-.plan-card{padding:12px 14px;border:2px solid #e3e5e8;border-radius:8px;background:rgba(255,255,255,.94)}
-.plan-top{display:flex;align-items:flex-end;justify-content:space-between;gap:12px}
+
+/* v5 HEADER + DATA LAYOUT */
+.header{top:36px;overflow:visible}
+h1{font-size:57px;line-height:1.02;overflow:visible;padding-top:5px}
+.reasons{
+  margin-top:30px;
+  font-size:16.25px; line-height:19px;
+  position:relative; z-index:50;
+  background:#fff;
+}
+.data-layer{
+  position:absolute;z-index:20;left:36px;right:36px;
+  top:205px;bottom:170px;
+}
+.config-meta{display:none}
+
+/* Deals always render first. */
+.plan-stack{
+  position:absolute;left:0;top:0;width:58%;
+  display:flex;flex-direction:column;gap:14px;
+  font-family:"IPPG Effra",sans-serif;color:var(--navy)
+}
+.plan-card{
+  min-height:88px;padding:11px 14px 10px;
+  border:2px solid #e3e5e8;border-radius:8px;
+  background:rgba(255,255,255,.96)
+}
+.plan-card.great-deal{min-height:120px}
+.deal-label{
+  font-family:"IPPG Effra",sans-serif;font-weight:700;
+  font-size:13px;line-height:14px;text-transform:uppercase;
+  color:#a43297;margin-bottom:3px
+}
 .plan-speed{font-size:25px;line-height:1;font-weight:700}
-.plan-price{font-size:22px;line-height:1;font-weight:700;text-align:right}
-.plan-reg{margin-top:5px;font:11px Arial,sans-serif;color:#59636d}
-.plan-q4{margin-top:5px;font:700 11px Arial,sans-serif;color:#a43297}
-.config-meta{position:absolute;left:0;top:0;font:11px Arial,sans-serif;color:#66717b}
+.plan-reg{margin-top:6px;font:12px/14px Arial,sans-serif;color:#59636d}
+.price-lockup{
+  display:flex;align-items:flex-start;margin-top:1px;
+  color:#bd2b94;font-family:"IPPG Effra",sans-serif;font-weight:700;
+}
+.price-dollar{font-size:25px;line-height:1;margin-top:5px}
+.price-whole{font-size:65px;line-height:.76;letter-spacing:-4px}
+.price-side{padding-left:4px;padding-top:1px}
+.price-cents{font-size:22px;line-height:21px}
+.price-term{font-size:11px;line-height:12px;margin-top:5px}
+.price-regrate{font:700 10px/11px Arial,sans-serif;color:var(--navy);margin-top:2px}
+.price-required{font:700 10px/11px Arial,sans-serif;color:var(--navy);margin-top:5px}
+.standard-price{font-size:21px;line-height:1;font-weight:700}
 .promo-preview{position:absolute;z-index:22;left:0;bottom:16px;width:260px;height:auto}

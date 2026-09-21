@@ -18,3 +18,11 @@ Current controls:
 Important:
 The middle plan-card treatment is an initial functional renderer, not the locked final pricing design.
 Q4 eero disclaimer date inconsistency remains unresolved and is not silently corrected.
+
+v5 layout changes:
+- Fixed H1 top clipping with visible overflow/top padding.
+- H2 moved to ~30px below H1 and increased 25%.
+- Removed hidden configuration metadata from behind H2.
+- Q4 Acquisition rows sort to the top but display only as "Great Deal".
+- Deal price lockup now emulates supplied $39.95 reference: small $, oversized dollars,
+  raised cents/asterisk, term, regular rate, and AutoPay/Paperless requirement.
