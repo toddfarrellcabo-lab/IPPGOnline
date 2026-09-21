@@ -6,90 +6,105 @@
   font-display:swap;
 }
 
-/* IPPGOnline canonical print master
-   8.5 x 11 inches @ 300 DPI = 2550 x 3300 px.
-   All locked artwork is positioned in this coordinate system.
-*/
 :root{
-  --page-w:2550px;
-  --page-h:3300px;
+  --page-w:816px;
+  --page-h:1056px;
   --navy:#061a33;
   --gradient:linear-gradient(90deg,#9b3297 0%,#ad3299 35.23%,#ef1978 100%);
 }
 *{box-sizing:border-box}
 html,body{margin:0;min-height:100%;background:#d7d9dc}
-body{font-family:"Effra CC","Effra Std","Avenir Next","Helvetica Neue",Arial,sans-serif}
+body{font-family:Arial,sans-serif}
 .app-shell{min-height:100vh}
 .toolbar{
-  position:sticky;top:0;z-index:1000;height:56px;padding:10px 18px;
-  display:flex;align-items:center;gap:18px;background:#fff;border-bottom:1px solid #c8cdd2;
-  font:14px Arial,sans-serif
+  position:sticky;top:0;z-index:1000;padding:10px 18px;
+  display:flex;align-items:center;gap:16px;flex-wrap:wrap;
+  background:#fff;border-bottom:1px solid #c8cdd2;font:14px Arial,sans-serif
 }
-.toolbar strong{margin-right:auto}
-.toolbar button{padding:8px 14px;cursor:pointer}
+.toolbar strong{margin-right:8px}
+.toolbar .spacer{flex:1}
+.toolbar select,.toolbar button{padding:7px 10px}
 .preview-stage{padding:28px;display:flex;justify-content:center;overflow:auto}
-.preview-scaler{position:relative}
 .page{
-  position:absolute;left:0;top:0;width:2550px;height:3300px;overflow:hidden;
-  background:#fff;transform-origin:top left;box-shadow:0 8px 28px rgba(0,0,0,.18)
+  position:relative;width:var(--page-w);height:var(--page-h);overflow:hidden;
+  background:#fff;box-shadow:0 8px 28px rgba(0,0,0,.18)
 }
 
 /* LOCKED HEADER */
-.header{position:absolute;z-index:30;left:97px;right:97px;top:97px}
+.header{position:absolute;z-index:30;left:36px;right:36px;top:36px}
 h1{
-  margin:0;font-family:"Effra CC","Effra Std","Avenir Next","Helvetica Neue",Arial,sans-serif;
-  font-weight:900;font-size:135px;line-height:1.055;letter-spacing:-5.5px;
-  background:var(--gradient);-webkit-background-clip:text;background-clip:text;
+  margin:0;
+  font-family:"IPPG Effra",sans-serif;
+  font-weight:700;
+  font-size:57px;
+  line-height:.98;
+  letter-spacing:-1.2px;
+  background:var(--gradient);
+  -webkit-background-clip:text;background-clip:text;
   -webkit-text-fill-color:transparent;color:#a43297
 }
-\1font-family:"IPPG Effra",sans-serif;\n  font-weight:700;font-size:34px;line-height:39px;letter-spacing:-.65px;
+.reasons{
+  margin-top:40px;
+  display:flex;align-items:baseline;white-space:nowrap;
+  font-family:"IPPG Effra",sans-serif;font-weight:700;
+  font-size:13px;line-height:15px;letter-spacing:-.1px;
   text-transform:uppercase;color:var(--navy)
 }
 .equipment{
-  margin-right:7px;background:var(--gradient);-webkit-background-clip:text;
-  background-clip:text;-webkit-text-fill-color:transparent;color:#a43297
+  display:inline-block;margin-right:4px;
+  background:var(--gradient);
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:#a43297
 }
 .equipment[hidden]{display:none}
 
-/* VARIABLE CONTENT LAYER */
+/* VARIABLE IPPG CONTENT AREA */
 .data-layer{
-  position:absolute;z-index:20;left:97px;right:97px;top:485px;bottom:485px
+  position:absolute;z-index:20;left:36px;right:36px;top:185px;bottom:170px
+}
+.data-placeholder{
+  display:none;border:1px dashed #b9bec4;padding:12px;color:#68727c;font:12px Arial,sans-serif
 }
 
-/* PERMANENT DOG ART: full page width, no skew/stretch.
-   190px reference anchor scales to ~612px in production coordinates. */
+/* PERMANENT ART */
 .spark-art{
-  position:absolute;z-index:10;left:0;bottom:612px;width:100%;height:auto;
+  position:absolute;z-index:10;left:0;bottom:190px;width:100%;height:auto;
   display:block;object-fit:contain;object-position:center bottom
 }
 
 /* LOCKED FOOTER */
-.footer{position:absolute;z-index:40;left:0;right:0;bottom:0;height:483px;background:#fff}
-.awfy-logo{
-  position:absolute;left:97px;bottom:145px;width:580px;height:auto;display:block
-}
-.footer-right{
-  position:absolute;right:97px;bottom:161px;height:193px;display:flex;align-items:center
-}
+.footer{position:absolute;z-index:40;left:0;right:0;bottom:0;height:150px;background:#fff}
+.awfy-logo{position:absolute;left:36px;bottom:20px;width:180px;height:auto;display:block}
+.footer-right{position:absolute;right:36px;bottom:60px;height:60px;display:flex;align-items:center}
 .footer-copy{
-  margin-right:64px;text-align:right;white-space:nowrap;color:var(--navy);
-  font-family:"Effra CC","Effra Std","Avenir Next","Helvetica Neue",Arial,sans-serif;
-  font-weight:800;font-size:45px;line-height:50px;letter-spacing:-1.1px
+  margin-right:20px;text-align:right;white-space:nowrap;color:var(--navy);
+  font-family:"IPPG Effra",sans-serif;font-weight:700;font-size:15px;line-height:16px
 }
-.qr{width:193px;height:193px;display:block;object-fit:contain}
+.qr{width:60px;height:60px;display:block;object-fit:contain}
 
-/* Printing: browser prints the exact Letter page, while the 2550x3300 coordinate
-   system is proportionally mapped into it. */
+@media(max-width:900px){
+  .preview-stage{justify-content:flex-start}
+}
+
+/* One physical Letter page. No 2550px CSS print scaling. */
 @media print{
-  @page{size:8.5in 11in;margin:0}
-  html,body{width:8.5in;height:11in;background:#fff}
+  @page{size:Letter portrait;margin:0}
+  html,body{margin:0;padding:0;width:8.5in;height:11in;background:#fff}
   .toolbar{display:none!important}
-  .preview-stage{padding:0;display:block;overflow:visible}
-  .preview-scaler{width:8.5in!important;height:11in!important}
+  .preview-stage{display:block;padding:0;margin:0;overflow:visible}
   .page{
-    position:relative;box-shadow:none;
-    transform:scale(0.0033333333)!important;
-    /* 1 production px = 1/300 inch; CSS inch is 96px */
-    transform-origin:top left
+    width:8.5in;height:11in;margin:0;box-shadow:none;overflow:hidden;
+    break-after:avoid;page-break-after:avoid
   }
 }
+
+/* v4 connected-data preview modules */
+.plan-stack{position:absolute;left:0;top:40px;width:58%;display:grid;gap:12px;font-family:"IPPG Effra",sans-serif;color:var(--navy)}
+.plan-card{padding:12px 14px;border:2px solid #e3e5e8;border-radius:8px;background:rgba(255,255,255,.94)}
+.plan-top{display:flex;align-items:flex-end;justify-content:space-between;gap:12px}
+.plan-speed{font-size:25px;line-height:1;font-weight:700}
+.plan-price{font-size:22px;line-height:1;font-weight:700;text-align:right}
+.plan-reg{margin-top:5px;font:11px Arial,sans-serif;color:#59636d}
+.plan-q4{margin-top:5px;font:700 11px Arial,sans-serif;color:#a43297}
+.config-meta{position:absolute;left:0;top:0;font:11px Arial,sans-serif;color:#66717b}
+.promo-preview{position:absolute;z-index:22;left:0;bottom:16px;width:260px;height:auto}

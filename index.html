@@ -10,8 +10,15 @@
 <div class="app-shell">
   <div class="toolbar">
     <strong>IPPGOnline</strong>
+    <label>Lifecycle
+      <select id="lifecycleSelect"><option value="Current">Current</option><option value="Scheduled">Scheduled</option><option value="All">All</option></select>
+    </label>
+    <label>Configuration
+      <select id="configurationSelect"></select>
+    </label>
     <label><input id="fiberToggle" type="checkbox"> Fiber</label>
     <label><input id="equipmentToggle" type="checkbox" checked> Equipment Included</label>
+    <span class="spacer"></span>
     <button id="printBtn" type="button">Save / Print PDF</button>
   </div>
 
@@ -26,9 +33,7 @@
           </div>
         </header>
 
-        <section class="data-layer" id="dataLayer">
-          <!-- IPPG speed, price, promo and legal modules render here next. -->
-        </section>
+        <section class="data-layer" id="dataLayer"><div class="data-placeholder">IPPG database content will render here after the source workbook is connected.</div></section>
 
         <img class="spark-art" src="assets/Spark_612x450.png" alt="">
 
@@ -48,6 +53,7 @@
     </div>
   </main>
 </div>
+<script src="database/ippg-data.js"></script>
 <script src="app.js"></script>
 </body>
 </html>
