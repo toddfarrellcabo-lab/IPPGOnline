@@ -1,0 +1,226 @@
+{
+  "meta": {
+    "name": "IPPGOnline",
+    "version": "0.1",
+    "description": "Internet Plans Pricing Guide renderer",
+    "note": "Seed data is a working prototype based on supplied Q4 2026 acquisition material. Verify rates and legal before production."
+  },
+  "rateCards": [
+    {
+      "id": "Core",
+      "label": "Core",
+      "plans": [
+        {
+          "speed": "1 Gig",
+          "rackRate": 105
+        },
+        {
+          "speed": "2 Gig",
+          "rackRate": 120
+        }
+      ]
+    },
+    {
+      "id": "Enhanced",
+      "label": "Enhanced",
+      "plans": [
+        {
+          "speed": "1 Gig",
+          "rackRate": 95
+        },
+        {
+          "speed": "2 Gig",
+          "rackRate": 120
+        }
+      ]
+    },
+    {
+      "id": "CoreMax",
+      "label": "Core Max",
+      "plans": [
+        {
+          "speed": "1 Gig",
+          "rackRate": 95
+        },
+        {
+          "speed": "2 Gig",
+          "rackRate": 105
+        }
+      ]
+    },
+    {
+      "id": "EnhancedMax",
+      "label": "Enhanced Max",
+      "plans": [
+        {
+          "speed": "1 Gig",
+          "rackRate": 80
+        },
+        {
+          "speed": "2 Gig",
+          "rackRate": 95
+        }
+      ]
+    },
+    {
+      "id": "Edge",
+      "label": "Edge",
+      "plans": [
+        {
+          "speed": "1 Gig",
+          "rackRate": 70
+        },
+        {
+          "speed": "2 Gig",
+          "rackRate": 90
+        }
+      ]
+    },
+    {
+      "id": "EdgeMax",
+      "label": "Edge Max",
+      "plans": [
+        {
+          "speed": "1 Gig",
+          "rackRate": 60
+        },
+        {
+          "speed": "2 Gig",
+          "rackRate": 70
+        }
+      ]
+    }
+  ],
+  "configurations": [
+    {
+      "id": "IPPG-CORE",
+      "label": "Core",
+      "rateCard": "Core",
+      "modifiers": []
+    },
+    {
+      "id": "IPPG-COREMAX",
+      "label": "Core Max",
+      "rateCard": "CoreMax",
+      "modifiers": []
+    },
+    {
+      "id": "IPPG-COREMAX-EXP",
+      "label": "Core Max - Expansion Markets",
+      "rateCard": "CoreMax",
+      "modifiers": [
+        "Expansion Markets"
+      ]
+    },
+    {
+      "id": "IPPG-COREMAX-HHI-SYM",
+      "label": "Core Max - HHI / Symmetrical",
+      "rateCard": "CoreMax",
+      "modifiers": [
+        "Equipment Included",
+        "HHI",
+        "Symmetrical Speeds"
+      ]
+    },
+    {
+      "id": "IPPG-COREMAX-UPTO1G",
+      "label": "Core Max - Up to 1 Gig",
+      "rateCard": "CoreMax",
+      "modifiers": [
+        "Equipment Included",
+        "Up to 1 Gig"
+      ],
+      "maxSpeed": "1 Gig"
+    },
+    {
+      "id": "IPPG-COREMAX-NORMAL",
+      "label": "Core Max - Normal Speeds",
+      "rateCard": "CoreMax",
+      "modifiers": [
+        "Equipment Included",
+        "Normal Speeds"
+      ]
+    },
+    {
+      "id": "IPPG-ENH",
+      "label": "Enhanced",
+      "rateCard": "Enhanced",
+      "modifiers": []
+    },
+    {
+      "id": "IPPG-ENH-EQ",
+      "label": "Enhanced - Equipment Included",
+      "rateCard": "Enhanced",
+      "modifiers": [
+        "Equipment Included"
+      ]
+    },
+    {
+      "id": "IPPG-ENHMAX",
+      "label": "Enhanced Max",
+      "rateCard": "EnhancedMax",
+      "modifiers": []
+    },
+    {
+      "id": "IPPG-ENHMAX-EQ",
+      "label": "Enhanced Max - Equipment Included",
+      "rateCard": "EnhancedMax",
+      "modifiers": [
+        "Equipment Included"
+      ]
+    },
+    {
+      "id": "IPPG-EDGE",
+      "label": "Edge",
+      "rateCard": "Edge",
+      "modifiers": []
+    },
+    {
+      "id": "IPPG-EDGE-EQ",
+      "label": "Edge - Equipment Included",
+      "rateCard": "Edge",
+      "modifiers": [
+        "Equipment Included"
+      ]
+    },
+    {
+      "id": "IPPG-EDGEMAX-EQ",
+      "label": "Edge Max - Equipment Included",
+      "rateCard": "EdgeMax",
+      "modifiers": [
+        "Equipment Included"
+      ]
+    }
+  ],
+  "offers": [
+    {
+      "id": "Q4-2026-1G",
+      "name": "Q4 2026 Acquisition - 1 Gig",
+      "speed": "1 Gig",
+      "price": 50,
+      "term": "for 24 months",
+      "start": "2026-10-12",
+      "end": "2027-01-03"
+    },
+    {
+      "id": "Q4-2026-2G",
+      "name": "Q4 2026 Acquisition - 2 Gig",
+      "speed": "2 Gig",
+      "price": 65,
+      "term": "for 24 months",
+      "start": "2026-10-12",
+      "end": "2027-01-03",
+      "exceptions": {
+        "EdgeMax": 60
+      }
+    },
+    {
+      "id": "Q4-2026-EERO",
+      "name": "FREE eero Plus",
+      "qualifier": "1 Gig+",
+      "display": "FREE eero Plus for 3 months",
+      "start": "2026-10-12",
+      "end": "2026-11-22"
+    }
+  ]
+}

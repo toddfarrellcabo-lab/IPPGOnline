@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>IPPGOnline</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="app-header">
+  <div><strong>IPPGOnline</strong><span>Internet Plans Pricing Guide</span></div>
+  <button id="printBtn">Print IPPG</button>
+</header>
+<main>
+  <aside class="controls">
+    <h1>Build an IPPG</h1>
+    <p class="intro">Choose a configuration and effective date. Current offers are applied automatically.</p>
+    <label>IPPG Configuration<select id="configSelect"></select></label>
+    <label>Effective Date<input id="effectiveDate" type="date" value="2026-10-15"></label>
+    <section class="summary">
+      <h2>Resolved Data</h2>
+      <div><small>RATE CARD</small><strong id="rateCardName"></strong></div>
+      <div><small>MODIFIERS</small><span id="modifierList"></span></div>
+      <div><small>ACTIVE OFFERS</small><span id="offerList"></span></div>
+    </section>
+    <p class="prototype">Prototype data only. Rates, legal copy and configuration mappings require production verification.</p>
+  </aside>
+
+  <section class="preview-wrap">
+    <div class="sheet" id="sheet">
+      <div class="topline"><div class="brand">SPARKLIGHT</div></div>
+      <div class="hero">
+        <div>
+          <h2>Choose Your Fiber-Fueled Speed.</h2>
+          <p>UNLIMITED DATA. NO CONTRACTS. WI-FI POWERED BY EERO.</p>
+        </div>
+        <div class="hero-mark">INTERNET<br>THAT FITS<br>YOUR LIFE.</div>
+      </div>
+      <div id="plans" class="plans"></div>
+      <div id="promoBox" class="promo-box" hidden></div>
+      <div id="featureBox" class="features"></div>
+      <div class="cta">
+        <div><strong>Find the speed that's right for you.</strong><br><span>Ask your Sparklight representative for details.</span></div>
+        <div class="qr">QR</div>
+      </div>
+      <div class="legal">
+        <strong>Offer details</strong>
+        <p id="legalText">Prototype: final approved legal copy will be populated from the production legal source.</p>
+      </div>
+      <div class="footer"><strong>SPARKLIGHT</strong><span id="configCode"></span></div>
+    </div>
+  </section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
