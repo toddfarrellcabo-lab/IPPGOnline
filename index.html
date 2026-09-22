@@ -1,73 +1,43 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>IPPGOnline Poster Style</title>
-<link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>IPPGOnline</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<div class="sheet">
-  <header class="masthead">
-    <h1>Choose Your<br><span>Fiber-Fueled Speed.</span></h1>
-    <p class="reasons"><span class="equipment" hidden>EQUIPMENT INCLUDED. </span>UNLIMITED DATA. NO CONTRACTS. WI-FI POWERED BY EERO.</p>
-  </header>
-
-  <main class="content">
-    <section class="plans">
-      <article class="plan promo">
-        <div class="ribbon">Most Popular Deal</div>
-        <h2>1 Gig</h2>
-        <p class="description">Powerful, dependable internet for a home that does it all.</p>
-        <div class="offer">
-          <div class="price"><span class="currency">$</span><span class="dollars">50</span><span class="per">/mo*</span></div>
-          <div class="term">for 24 months</div>
-        </div>
-        <p class="rack">Reg. rate $95/mo.</p>
-        <p class="billing">Auto Pay &amp; Paperless billing required.</p>
-      </article>
-
-      <article class="plan promo">
-        <div class="ribbon">Even Better</div>
-        <h2>2 Gig</h2>
-        <p class="description">Exceptional speed and bandwidth for the highest-demand needs.</p>
-        <div class="offer">
-          <div class="price"><span class="currency">$</span><span class="dollars">65</span><span class="per">/mo*</span></div>
-          <div class="term">for 24 months</div>
-        </div>
-        <p class="rack">Reg. rate $120/mo.</p>
-        <p class="billing">Auto Pay &amp; Paperless billing required.</p>
-      </article>
-
-      <article class="plan standard">
-        <h2>300 Mbps</h2>
-        <p class="description">Simple, dependable internet for everyday connection.</p>
-        <div class="standard-price"><span>$</span>39<sup>95</sup><small>/mo.</small></div>
-        <p class="rack">Reg. rate $65/mo.</p>
-      </article>
-
-      <article class="plan standard">
-        <h2>600 Mbps</h2>
-        <p class="description">Enhanced performance for busy homes and growing connection needs.</p>
-        <div class="standard-price"><span>$</span>59<sup>95</sup><small>/mo.</small></div>
-        <p class="rack">Reg. rate $80/mo.</p>
-      </article>
-    </section>
-
-    <img class="dog" src="./assets/Spark_612x450.png" alt="" onerror="this.style.display='none';document.body.classList.add('dog-missing')">
-    <div class="gig-promo" data-eligibility="1-gig-and-higher">
-      <img class="eero" src="./assets/SPK-_0001_persona-3MFree.png" alt="Free eero Plus for 3 months" onerror="this.style.display='none';this.closest('.gig-promo').classList.add('asset-missing')">
+  <main class="workspace">
+    <div class="toolbar no-print">
+      <label>Guide <select id="guideSelect"></select></label>
+      <button id="printBtn">Print / Save PDF</button>
     </div>
+
+    <article class="sheet" id="sheet">
+      <header class="masthead">
+        <h1 id="headline">Choose Your<br><span>Fiber-Fueled Speed.</span></h1>
+        <img class="top-logo asset" data-asset="logo" alt="Sparklight">
+        <div class="reasons" id="reasons">UNLIMITED DATA. NO CONTRACTS. WI-FI POWERED BY EERO.</div>
+      </header>
+
+      <section class="content">
+        <div class="plans" id="plans"></div>
+        <img class="dog asset" data-asset="dog" alt="">
+      </section>
+
+      <section class="offers">
+        <img id="eeroPromo" class="eero-promo asset" data-asset="eeroPromo" alt="Free eero Plus for 3 months when you choose a Gig plan.">
+        <img id="mobilePromo" class="mobile-promo asset" data-asset="mobilePromo" alt="+Get Unlimited Mobile FREE for 1 Year.">
+      </section>
+
+      <footer>
+        <img class="footer-logo asset" data-asset="logo" alt="Sparklight">
+        <div class="contact">Scan, call <strong>1.855.692.4116</strong><br>or visit <strong>Sparklight.com</strong></div>
+        <img class="qr asset" data-asset="qr" alt="QR code">
+        <div class="legal" id="legal">[APPROVED LEGAL / DISCLAIMER AREA — DATA DRIVEN]</div>
+      </footer>
+    </article>
   </main>
-
-  <footer>
-    <div class="footer-row">
-      <img class="logo" src="./assets/Sparklight(R)-purple-cmyk_AWFY.png" alt="Sparklight. Always working for you.">
-      <div class="contact">Scan, call <strong>1.855.692.4116</strong><br>or visit <strong>Sparklight.com</strong></div>
-      <img class="qr" src="./assets/Sparklight_QR_60x60.jpg" alt="QR code">
-    </div>
-    <div class="legal">[APPROVED LEGAL / DISCLAIMER AREA — DATA DRIVEN]</div>
-  </footer>
-</div>
+  <script src="app.js"></script>
 </body>
 </html>

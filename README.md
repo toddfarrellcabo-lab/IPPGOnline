@@ -1,39 +1,19 @@
-# IPPGOnline V0.2 — normalized Personaville data model
+# IPPGOnline Visual System v6
 
-This version converts the existing scheduled Personaville knowledge into an IPPG-oriented model.
+This version converts the approved visual direction into HTML/CSS/JavaScript rather than a generated image.
 
-## Core model
-Configuration + active offer overlays -> rendered IPPG.
+## Repo placement
+Merge these files into the existing IPPGOnline repo. Keep your existing `assets/` files.
 
-Promotional buckets are no longer the identity of the document. The source Personaville scheduled records are collapsed into 18 working IPPG configurations based on:
-- source FamilyGroup
-- base rate card
-- equipment/symmetrical/fiber flags and family-name modifiers
-- available speed lineup
-- rack rates
-- upload-speed pattern
+Expected asset names:
+- `assets/Spark_612x450.png`
+- `assets/Sparklight(R)-purple-cmyk_AWFY.png`
+- `assets/Sparklight_QR_60x60.jpg`
+- `assets/SPK-_0001_persona-3MFree.png`
+- `assets/mobile-unlimited-free-1-year.png` (rename the approved horizontal Mobile graphic to this)
+- Effra webfont files can remain under `assets/fonts/`.
 
-## Source-derived configuration concepts
-Base rate cards normalize to:
-Core, CoreMax, Enhanced, EnhancedMax, Edge, EdgeMax.
+## Data
+The renderer loads only `data/ippg-data.json`. `headlineMode`, `equipmentIncluded`, plan pricing, promo visibility, legal copy, and `filename` are data-driven.
 
-Universal modifiers currently inferred/preserved:
-Expansion Markets, HHI, Up to 1 Gig, Normal Speeds, Equipment Included, Symmetrical Speeds, Fiber.
-
-## Q4 overlays
-- 1 Gig: $50 for 24 months
-- 2 Gig: $65 for 24 months
-- EdgeMax 2 Gig exception: $60
-- eero Plus: FREE for 3 months for qualifying 1 Gig+ service during the campaign window
-
-## Important production guardrails
-This is a working data model, not final approved customer data.
-- Legal remains placeholder-only until verified against the production legal tracker.
-- Town/market-to-configuration mapping is not yet loaded.
-- Price Lock is preserved in Personaville source history but is not modeled as a current Q4 offer because the supplied Q4 acquisition sheet does not establish it.
-- The eero campaign timeline date is used as 2026-11-22; the supplied legal transcription had a conflicting 11/22/27 expiration and must be verified.
-- Q4 lower-tier promotional/first-paid pricing from old promo buckets is not treated as a universal current offer. Rack rates and speed availability come from the scheduled Personaville structure; Q4 1G/2G overrides come from the acquisition material.
-
-## Run
-    python -m http.server 8000
-Open http://localhost:8000
+The Print / Save PDF button invokes the browser print dialog. The document title is temporarily set from the data `filename`, which browsers commonly use as the suggested PDF filename.
