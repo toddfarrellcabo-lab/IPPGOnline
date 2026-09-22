@@ -1,58 +1,7 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>IPPGOnline</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-<main class="ippg-workspace">
-  <div class="ippg-toolbar no-print">
-    <button id="databaseBtn" type="button">Database</button>
-    <label>Guide <select id="guideSelect"></select></label>
-    <button id="printBtn" type="button">Print / Save PDF</button>
-  </div>
-  <aside id="databasePanel" class="ippg-db-panel no-print" hidden>
-    <div class="ippg-db-head"><div><strong>Personaville Database</strong><span id="dbSource"></span></div><button id="dbClose" type="button">×</button></div>
-    <div class="ippg-db-filters">
-      <input id="dbSearch" type="search" placeholder="Search persona, rate card, pricing set, modifier...">
-      <select id="dbLifecycle"><option value="">All lifecycle</option><option>Current</option><option>Scheduled</option></select>
-      <select id="dbPricing"><option value="">All pricing sets</option></select>
-    </div>
-    <div id="dbCount" class="ippg-db-count"></div>
-    <div id="dbRows" class="ippg-db-rows"></div>
-  </aside>
-
-  <article class="ippg-sheet" id="sheet">
-    <header class="ippg-masthead">
-      <h1 id="headline" class="ippg-headline"></h1>
-      <img class="ippg-top-logo ippg-asset" data-asset="logo" alt="Sparklight">
-      <div class="ippg-reasons" id="reasons"></div>
-    </header>
-
-    <section class="ippg-content">
-      <div class="ippg-plans" id="plans"></div>
-      <img class="ippg-dog ippg-asset" data-asset="dog" alt="">
-    </section>
-
-    <section class="ippg-offers">
-      <img id="eeroPromo" class="ippg-eero ippg-asset" data-asset="eeroPromo"
-           alt="Free eero Plus for 3 months when you choose a Gig plan.">
-      <div id="mobilePromo" class="ippg-mobile-callout" aria-label="Get Unlimited Mobile FREE for 1 Year">
-        <span class="ippg-mobile-plus">+</span><span>Get Unlimited Mobile </span><strong>FREE</strong><span> for 1 Year.</span>
-        <span class="ippg-phone" aria-hidden="true"></span>
-      </div>
-    </section>
-
-    <footer class="ippg-footer">
-      <img class="ippg-footer-logo ippg-asset" data-asset="logo" alt="Sparklight">
-      <div class="ippg-contact">Scan, call <strong>1.855.692.4116</strong><br>or visit <strong>Sparklight.com</strong></div>
-      <img class="ippg-qr ippg-asset" data-asset="qr" alt="QR code">
-      <div class="ippg-legal" id="legal"></div>
-    </footer>
-  </article>
-</main>
-<script src="app.js"></script>
-</body>
-</html>
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>IPPGOnline Builder</title><link rel="stylesheet" href="styles.css"></head><body>
+<div class="app">
+<aside class="db no-print"><h2>Personaville Database</h2><small id="source"></small><input id="search" placeholder="Search persona, rate card, pricing set, modifier..."><div class="filters"><select id="life"><option value="">All lifecycle</option><option>Current</option><option>Scheduled</option></select><select id="pricing"><option value="">All pricing sets</option></select></div><div id="count"></div><div id="rows"></div></aside>
+<main><div class="toolbar no-print"><label>Guide <select id="guide"></select></label><button id="exportPdf">Print / Save PDF</button><button id="exportJson">Export Config</button></div>
+<article class="sheet"><img id="backdrop" class="backdrop" alt=""><div class="overlay"><section id="plans" class="plans"></section><section id="promoZone" class="promo-zone"><div id="eero" class="eero"><div class="free">FREE</div><div class="ename">eero Plus</div><div class="eterm">for 3 months</div><div class="equal">when you choose a Gig plan.</div></div><div id="mobile" class="mobile">+ Get Unlimited Mobile <b>FREE</b> for 1 Year.</div></section><div id="legal" class="legal"></div></div></article></main>
+<aside class="builder no-print"><h2>Template Builder</h2><label>Backdrop<select id="backdropMode"><option value="auto">Auto from database</option><option value="fiberFueled">Fiber-Fueled</option><option value="fiberFueledEquip">Fiber-Fueled + Equipment</option><option value="fiberInternet">Fiber Internet</option><option value="fiberInternetEquip">Fiber Internet + Equipment</option></select></label><label>Plan layout<select id="layout"><option value="auto">Auto</option><option value="2">2 Speeds</option><option value="3">3 Speeds</option><option value="4">4 Speeds</option></select></label><h3>Promo elements</h3><label><input id="teero" type="checkbox"> FREE eero Plus</label><label><input id="tmobile" type="checkbox" checked> Mobile</label><h3>Plan visibility</h3><div id="ptoggles"></div><h3>Export</h3><label>Filename<input id="filename"></label><button id="reset">Use Database Defaults</button><p class="note">Backdrop, plans and legal default from Personaville. Controls are preview/export overrides.</p></aside>
+</div><script src="app.js"></script></body></html>

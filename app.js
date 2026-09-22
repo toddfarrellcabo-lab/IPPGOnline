@@ -1,65 +1,9 @@
-const ASSETS={dog:"./assets/Spark_612x450.png",logo:"./assets/Sparklight(R)-purple-cmyk_AWFY.png",qr:"./assets/Sparklight_QR_60x60.jpg",eeroPromo:"./assets/SPK-_0001_persona-3MFree.png"};
-let records=[],current=null,source={};
-
-function esc(v){return String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
-function planHTML(p,i){
-  const promo=!!p.promo;
-  const cents=p.cents?`<sup class="ippg-cents">${esc(p.cents)}</sup>`:"";
-  return `<section class="ippg-plan ${promo?"ippg-promo promo":"ippg-standard standard"}">
-    ${promo?`<div class="ippg-ribbon">${esc(p.badge||"Great Deal")}</div>`:""}
-    <h2 class="ippg-speed">${esc(p.speed)}</h2>
-    <p class="ippg-description">${esc(p.description||p.pricingSummary||"")}</p>
-    <div class="ippg-price"><span class="ippg-currency">$</span><span class="ippg-dollars">${esc(p.dollars)}</span>${cents}<span class="ippg-suffix">/mo${promo?"*":"."}</span></div>
-    ${promo&&p.term?`<div class="ippg-term">${esc(p.term)}</div>`:""}
-    <div class="ippg-support">Reg. rate ${esc(p.rack||"")}<span class="ippg-billing">${esc(p.billing||"")}</span></div>
-  </section>`;
-}
-function setAsset(key,src){document.querySelectorAll(`[data-asset="${key}"]`).forEach(el=>{el.src=src||"";});}
-function render(d){
-  current=d;
-  const fiber=d.headlineMode==="Fiber"?"Fiber":"Fiber-Fueled";
-  document.getElementById("headline").innerHTML=`Choose Your<br><span>${fiber} Speed.</span>`;
-  document.getElementById("reasons").innerHTML=(d.equipmentIncluded?`<span class="equipment">EQUIPMENT INCLUDED. </span>`:"")+"UNLIMITED DATA. NO CONTRACTS. WI-FI POWERED BY EERO.";
-  document.getElementById("plans").innerHTML=(d.plans||[]).map(planHTML).join("");
-  document.getElementById("legal").textContent=d.legal||"";
-  Object.entries(ASSETS).forEach(([k,v])=>setAsset(k,v));
-  document.getElementById("eeroPromo").style.display=d.promos?.eero?"block":"none";
-  document.getElementById("mobilePromo").style.display=d.promos?.mobile===false?"none":"flex";
-  renderDB();
-}
-function fillGuideSelect(){
-  const s=document.getElementById("guideSelect");
-  s.innerHTML=records.map((r,i)=>`<option value="${i}">${esc(r.personaID)} — ${esc(r.personaName)}</option>`).join("");
-  s.onchange=()=>render(records[+s.value]);
-}
-function renderDB(){
-  const host=document.getElementById("dbRows"); if(!host)return;
-  const q=(document.getElementById("dbSearch").value||"").toLowerCase();
-  const life=document.getElementById("dbLifecycle").value;
-  const pricing=document.getElementById("dbPricing").value;
-  const found=records.map((r,i)=>({r,i})).filter(({r})=>{
-    const hay=[r.personaID,r.personaName,r.baseRateCard,r.pricingSet,r.modifiers,(r.plans||[]).map(p=>p.speed).join(" ")].join(" ").toLowerCase();
-    return (!q||hay.includes(q))&&(!life||r.lifecycle===life)&&(!pricing||r.pricingSet===pricing);
-  });
-  document.getElementById("dbCount").textContent=`${found.length} of ${records.length} personas`;
-  host.innerHTML=found.map(({r,i})=>`<button type="button" class="ippg-db-card ${current===r?"active":""}" data-i="${i}">
-    <div class="ippg-db-title">${esc(r.personaID)} · ${esc(r.personaName)}</div>
-    <div class="ippg-db-meta">${esc(r.baseRateCard)} · ${esc(r.pricingSet)}${r.modifiers?` · ${esc(r.modifiers)}`:""}</div>
-    <div class="ippg-db-tags"><span class="ippg-db-tag life">${esc(r.lifecycle)}</span>${r.equipmentIncluded?'<span class="ippg-db-tag">Equipment Included</span>':""}${r.symSpeed?'<span class="ippg-db-tag">Sym Speed</span>':""}${r.fiber?'<span class="ippg-db-tag">Fiber</span>':""}</div>
-  </button>`).join("");
-  host.querySelectorAll("[data-i]").forEach(b=>b.onclick=()=>{const i=+b.dataset.i;document.getElementById("guideSelect").value=i;render(records[i]);});
-}
-async function load(){
-  const r=await fetch("./data/ippg-data.json",{cache:"no-store"});
-  const j=await r.json(); records=j.guides||[]; source=j.source||{};
-  fillGuideSelect();
-  const sets=[...new Set(records.map(r=>r.pricingSet).filter(Boolean))].sort();
-  document.getElementById("dbPricing").innerHTML='<option value="">All pricing sets</option>'+sets.map(x=>`<option>${esc(x)}</option>`).join("");
-  document.getElementById("dbSource").textContent=`${source.file||"Personaville"} · ${records.length} personas`;
-  ["dbSearch","dbLifecycle","dbPricing"].forEach(id=>document.getElementById(id).addEventListener(id==="dbSearch"?"input":"change",renderDB));
-  document.getElementById("databaseBtn").onclick=()=>{document.getElementById("databasePanel").hidden=false;renderDB();};
-  document.getElementById("dbClose").onclick=()=>document.getElementById("databasePanel").hidden=true;
-  render(records[0]);
-}
-document.getElementById("printBtn").onclick=()=>{const old=document.title;document.title=(current?.filename||"IPPG").replace(/[\\/:*?"<>|]/g,"-");window.print();setTimeout(()=>document.title=old,500);};
-load().catch(e=>{document.body.insertAdjacentHTML("afterbegin",`<div style="padding:10px;background:#fee;color:#900">Database load error: ${esc(e.message)}. Run this folder through a local/static web server rather than opening index.html directly.</div>`);});
+const B={fiberFueled:"./assets/Fiber-Fueled-Backdrop.jpg",fiberFueledEquip:"./assets/Fiber-Fueled_EquipmentInc-Backdrop.jpg",fiberInternet:"./assets/Fiber_Internet-Backdrop.jpg",fiberInternetEquip:"./assets/Fiber_Internet_EquipmentInc-Backdrop.jpg"};let R=[],C=null,O={backdrop:"auto",layout:"auto",eero:null,mobile:true,plans:{}};const $=x=>document.getElementById(x),E=v=>String(v??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+function backKey(r){let fiber=r.headlineMode==="Fiber"||r.fiber===true;return fiber?(r.equipmentIncluded?"fiberInternetEquip":"fiberInternet"):(r.equipmentIncluded?"fiberFueledEquip":"fiberFueled")}
+function eeroDefault(r){return r.lifecycle==="Scheduled"&&(r.plans||[]).some(p=>/1\s*Gig|2\s*Gig|5\s*Gig/i.test(p.speed||""))}
+function vp(r){return(r.plans||[]).filter((p,i)=>O.plans[i]!==false)}
+function ph(p){return`<div class="plan"><div class="speed">${E(p.speed)}</div><div class="schedule">${E(p.pricingSummary||"")}</div><div><div class="price"><span class="currency">$</span><span class="dollars">${E(p.dollars)}</span>${p.cents?`<sup class="cents">${E(p.cents)}</sup>`:""}<span class="per">/mo.</span></div><div class="support">Reg. rate ${E(p.rack)} ${E(p.billing)}</div></div></div>`}
+function render(r){C=r;let bk=O.backdrop==="auto"?backKey(r):O.backdrop;$("backdrop").src=B[bk];let p=vp(r),n=O.layout==="auto"?Math.max(2,Math.min(4,p.length)):+O.layout;$("plans").className="plans layout"+n;$("plans").innerHTML=p.slice(0,n).map(ph).join("");$("eero").style.display=(O.eero===null?eeroDefault(r):O.eero)?"block":"none";$("mobile").style.display=O.mobile?"block":"none";$("legal").textContent=r.legal||"";$("filename").value=r.filename||r.personaID||"IPPG";$("ptoggles").innerHTML=(r.plans||[]).map((x,i)=>`<label><input data-p="${i}" type="checkbox" ${O.plans[i]===false?"":"checked"}> ${E(x.speed)}</label>`).join("");$("ptoggles").querySelectorAll("input").forEach(x=>x.onchange=()=>{O.plans[+x.dataset.p]=x.checked;render(C)});$("teero").checked=O.eero===null?eeroDefault(r):O.eero;$("tmobile").checked=O.mobile;db()}
+function db(){let q=$("search").value.toLowerCase(),l=$("life").value,p=$("pricing").value,a=R.map((r,i)=>({r,i})).filter(x=>{let r=x.r,h=[r.personaID,r.personaName,r.baseRateCard,r.pricingSet,r.modifiers].join(" ").toLowerCase();return(!q||h.includes(q))&&(!l||r.lifecycle===l)&&(!p||r.pricingSet===p)});$("count").textContent=`${a.length} of ${R.length} personas`;$("rows").innerHTML=a.map(x=>`<button class="card ${C===x.r?"active":""}" data-i="${x.i}"><div class="title">${E(x.r.personaID)} · ${E(x.r.personaName)}</div><div class="meta">${E(x.r.baseRateCard)} · ${E(x.r.pricingSet)}${x.r.modifiers?" · "+E(x.r.modifiers):""}</div><span class="tag">${E(x.r.lifecycle)}</span>${x.r.equipmentIncluded?'<span class="tag">Equipment Included</span>':""}${x.r.symSpeed?'<span class="tag">Sym Speed</span>':""}${x.r.fiber?'<span class="tag">Fiber</span>':""}</button>`).join("");$("rows").querySelectorAll(".card").forEach(b=>b.onclick=()=>{$("guide").value=b.dataset.i;O.plans={};render(R[+b.dataset.i])})}
+function download(name,text,type){let a=document.createElement("a");a.href=URL.createObjectURL(new Blob([text],{type}));a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)}
+async function load(){let j=await(await fetch("./data/ippg-data.json")).json();R=j.guides||[];$("source").textContent=`${j.source?.file||"Personaville"} · ${R.length} personas`;$("guide").innerHTML=R.map((r,i)=>`<option value="${i}">${E(r.personaID)} — ${E(r.personaName)}</option>`).join("");$("guide").onchange=()=>{O.plans={};render(R[+$("guide").value])};let s=[...new Set(R.map(r=>r.pricingSet).filter(Boolean))].sort();$("pricing").innerHTML='<option value="">All pricing sets</option>'+s.map(x=>`<option>${E(x)}</option>`).join("");["search","life","pricing"].forEach(id=>$(id).addEventListener(id==="search"?"input":"change",db));$("backdropMode").onchange=e=>{O.backdrop=e.target.value;render(C)};$("layout").onchange=e=>{O.layout=e.target.value;render(C)};$("teero").onchange=e=>{O.eero=e.target.checked;render(C)};$("tmobile").onchange=e=>{O.mobile=e.target.checked;render(C)};$("reset").onclick=()=>{O={backdrop:"auto",layout:"auto",eero:null,mobile:true,plans:{}};$("backdropMode").value="auto";$("layout").value="auto";render(C)};$("exportPdf").onclick=()=>{document.title=($("filename").value||"IPPG").replace(/[\\/:*?"<>|]/g,"-");window.print()};$("exportJson").onclick=()=>download(($("filename").value||"IPPG")+".json",JSON.stringify({record:C,overrides:O,backdrop:O.backdrop==="auto"?backKey(C):O.backdrop,visiblePlans:vp(C).map(x=>x.speed)},null,2),"application/json");render(R[0])}load();
