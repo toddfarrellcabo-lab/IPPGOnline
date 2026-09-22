@@ -8,7 +8,4 @@
 .promo-img{display:block;object-fit:contain;object-position:left top}
 .eero-img{width:245px;max-height:105px}
 .mobile-img{width:245px;max-height:90px}
-.sym-bug{display:inline-flex;vertical-align:middle;margin-left:7px;width:27px;height:27px;border:2px solid #9b319e;border-radius:50%;align-items:center;justify-content:center;color:#9b319e;font:bold 13px Arial;line-height:1}
-.sym-bug.gauge:before{content:"↕";font-size:17px}
-.sym-bug.arrows:before{content:"⇅";font-size:17px}
 .builder input[type=range]{width:145px;vertical-align:middle}.builder output{display:inline-block;min-width:25px;text-align:right;font:10px Arial}
