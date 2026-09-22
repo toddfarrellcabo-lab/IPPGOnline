@@ -7,7 +7,6 @@ const DEFAULT = {
     logo:"./assets/Sparklight(R)-purple-cmyk_AWFY.png",
     qr:"./assets/Sparklight_QR_60x60.jpg",
     eeroPromo:"./assets/SPK-_0001_persona-3MFree.png",
-    mobilePromo:"./assets/mobile-unlimited-free-1-year.png"
   },
   plans:[
     {speed:"1 Gig",badge:"Most Popular Deal",description:"Powerful, dependable internet for a home that does it all.",promo:true,dollars:"50",term:"for 24 months",rack:"$95/mo.",billing:"Autopay & Paperless billing required."},
@@ -23,20 +22,20 @@ let records=[DEFAULT], current=DEFAULT;
 
 function planHTML(p){
   if(p.promo){
-    return `<section class="plan promo">
-      <div class="ribbon">${p.badge||"Great Deal"}</div>
-      <h2 class="speed">${p.speed}</h2>
-      <p class="description">${p.description||""}</p>
-      <div class="price"><span class="currency">$</span><span class="dollars">${p.dollars}</span><span class="suffix">/mo<span class="asterisk">*</span></span></div>
-      <div class="term">${p.term||""}</div>
-      <div class="support">Reg. rate ${p.rack||""}<span class="billing">${p.billing||""}</span></div>
+    return `<section class="ippg-plan ippg-promo promo">
+      <div class="ippg-ribbon">${p.badge||"Great Deal"}</div>
+      <h2 class="ippg-speed">${p.speed}</h2>
+      <p class="ippg-description">${p.description||""}</p>
+      <div class="ippg-price"><span class="ippg-currency">$</span><span class="ippg-dollars">${p.dollars}</span><span class="ippg-suffix">/mo<span class="ippg-asterisk">*</span></span></div>
+      <div class="ippg-term">${p.term||""}</div>
+      <div class="ippg-support">Reg. rate ${p.rack||""}<span class="ippg-billing">${p.billing||""}</span></div>
     </section>`;
   }
-  return `<section class="plan standard">
-    <h2 class="speed">${p.speed}</h2>
-    <p class="description">${p.description||""}</p>
-    <div class="price"><span class="currency">$</span><span class="dollars">${p.dollars}</span>${p.cents?`<sup class="cents">${p.cents}</sup>`:""}<span class="suffix">/mo.</span></div>
-    <div class="support">Reg. rate ${p.rack||""}<span class="billing">${p.billing||""}</span></div>
+  return `<section class="ippg-plan ippg-standard standard">
+    <h2 class="ippg-speed">${p.speed}</h2>
+    <p class="ippg-description">${p.description||""}</p>
+    <div class="ippg-price"><span class="ippg-currency">$</span><span class="ippg-dollars">${p.dollars}</span>${p.cents?`<sup class="ippg-cents">${p.cents}</sup>`:""}<span class="ippg-suffix">/mo.</span></div>
+    <div class="ippg-support">Reg. rate ${p.rack||""}<span class="ippg-billing">${p.billing||""}</span></div>
   </section>`;
 }
 
@@ -57,7 +56,7 @@ function render(d){
   const a={...DEFAULT.assets,...(d.assets||{})};
   Object.entries(a).forEach(([k,v])=>setAsset(k,v));
   document.getElementById("eeroPromo").style.display=d.promos?.eero===false?"none":"block";
-  document.getElementById("mobilePromo").style.display=d.promos?.mobile===false?"none":"block";
+  document.getElementById("mobilePromo").style.display=d.promos?.mobile===false?"none":"flex";
 }
 async function load(){
   try{

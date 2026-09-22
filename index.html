@@ -7,37 +7,41 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <main class="workspace">
-    <div class="toolbar no-print">
-      <label>Guide <select id="guideSelect"></select></label>
-      <button id="printBtn">Print / Save PDF</button>
-    </div>
+<main class="ippg-workspace">
+  <div class="ippg-toolbar no-print">
+    <label>Guide <select id="guideSelect"></select></label>
+    <button id="printBtn" type="button">Print / Save PDF</button>
+  </div>
 
-    <article class="sheet" id="sheet">
-      <header class="masthead">
-        <h1 id="headline">Choose Your<br><span>Fiber-Fueled Speed.</span></h1>
-        <img class="top-logo asset" data-asset="logo" alt="Sparklight">
-        <div class="reasons" id="reasons">UNLIMITED DATA. NO CONTRACTS. WI-FI POWERED BY EERO.</div>
-      </header>
+  <article class="ippg-sheet" id="sheet">
+    <header class="ippg-masthead">
+      <h1 id="headline" class="ippg-headline"></h1>
+      <img class="ippg-top-logo ippg-asset" data-asset="logo" alt="Sparklight">
+      <div class="ippg-reasons" id="reasons"></div>
+    </header>
 
-      <section class="content">
-        <div class="plans" id="plans"></div>
-        <img class="dog asset" data-asset="dog" alt="">
-      </section>
+    <section class="ippg-content">
+      <div class="ippg-plans" id="plans"></div>
+      <img class="ippg-dog ippg-asset" data-asset="dog" alt="">
+    </section>
 
-      <section class="offers">
-        <img id="eeroPromo" class="eero-promo asset" data-asset="eeroPromo" alt="Free eero Plus for 3 months when you choose a Gig plan.">
-        <img id="mobilePromo" class="mobile-promo asset" data-asset="mobilePromo" alt="+Get Unlimited Mobile FREE for 1 Year.">
-      </section>
+    <section class="ippg-offers">
+      <img id="eeroPromo" class="ippg-eero ippg-asset" data-asset="eeroPromo"
+           alt="Free eero Plus for 3 months when you choose a Gig plan.">
+      <div id="mobilePromo" class="ippg-mobile-callout" aria-label="Get Unlimited Mobile FREE for 1 Year">
+        <span class="ippg-mobile-plus">+</span><span>Get Unlimited Mobile </span><strong>FREE</strong><span> for 1 Year.</span>
+        <span class="ippg-phone" aria-hidden="true"></span>
+      </div>
+    </section>
 
-      <footer>
-        <img class="footer-logo asset" data-asset="logo" alt="Sparklight">
-        <div class="contact">Scan, call <strong>1.855.692.4116</strong><br>or visit <strong>Sparklight.com</strong></div>
-        <img class="qr asset" data-asset="qr" alt="QR code">
-        <div class="legal" id="legal">[APPROVED LEGAL / DISCLAIMER AREA — DATA DRIVEN]</div>
-      </footer>
-    </article>
-  </main>
-  <script src="app.js"></script>
+    <footer class="ippg-footer">
+      <img class="ippg-footer-logo ippg-asset" data-asset="logo" alt="Sparklight">
+      <div class="ippg-contact">Scan, call <strong>1.855.692.4116</strong><br>or visit <strong>Sparklight.com</strong></div>
+      <img class="ippg-qr ippg-asset" data-asset="qr" alt="QR code">
+      <div class="ippg-legal" id="legal"></div>
+    </footer>
+  </article>
+</main>
+<script src="app.js"></script>
 </body>
 </html>
