@@ -30,7 +30,14 @@ function eeroDefault(r){
 }
 function mobileDefault(r){return !!(r.promos && r.promos.mobile)}
 function vp(r){return(r.plans||[]).filter((p,i)=>O.plans[i]!==false)}
-function ph(p){return`<div class="plan"><div class="speed">${E(p.speed)}</div><div class="schedule">${E(p.pricingSummary||"")}</div><div><div class="price"><span class="currency">$</span><span class="dollars">${E(p.dollars)}</span>${p.cents?`<sup class="cents">${E(p.cents)}</sup>`:""}<span class="per">/mo.</span></div><div class="support">Reg. rate ${E(p.rack)} ${E(p.billing)}</div></div></div>`}
+function ph(p){
+  const price=(p.price||"").replace(/^\$/,"");
+  return `<div class="plan table-row">
+    <div class="speed">${p.speed||""}</div>
+    <div class="schedule">${p.schedule||""}</div>
+    <div class="price-cell"><span class="price">$${price}</span><span class="term">${p.term||"/mo."}</span><div class="support">${p.support||""}</div></div>
+  </div>`;
+}
 function render(r){C=r;let autoKey=backKey(r),bk=O.backdrop==="auto"?autoKey:O.backdrop;
 if(!B[bk]){bk=autoKey;O.backdrop="auto";}
 $("backdrop").src=B[bk];

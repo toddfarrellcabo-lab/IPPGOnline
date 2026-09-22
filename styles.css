@@ -13,3 +13,123 @@
 .builder-actions{margin:8px 0 10px}
 .primary-action{width:100%;padding:8px 10px;font-weight:700;cursor:pointer}
 .builder-dirty .primary-action{outline:2px solid currentColor}
+
+/* v9 — simple table treatment for plan/pricing frame */
+.plans-frame{
+  position:absolute;
+  left:48px;
+  top:var(--plan-y,210px);
+  width:500px;
+  height:270px;
+  box-sizing:border-box;
+}
+.plan-table-head{
+  display:grid;
+  grid-template-columns:125px 235px 140px;
+  align-items:end;
+  padding:0 0 5px;
+  border-bottom:1px solid #cfd4da;
+  font:700 9px/1.1 Arial,sans-serif;
+  text-transform:uppercase;
+  letter-spacing:.2px;
+  color:#586474;
+}
+.plans{
+  position:static !important;
+  width:100% !important;
+  height:auto !important;
+  display:table !important;
+  table-layout:fixed;
+  border-collapse:collapse;
+}
+.plans .plan.table-row{
+  display:grid !important;
+  grid-template-columns:125px 235px 140px !important;
+  gap:0 !important;
+  min-height:52px;
+  height:auto !important;
+  align-items:center;
+  border-bottom:1px solid #e1e4e8;
+}
+.plans .speed{
+  font-size:var(--speed-size,30px);
+  line-height:.95;
+  font-weight:700;
+  padding:8px 8px 8px 0;
+}
+.plans .schedule{
+  font-size:var(--schedule-size,11px);
+  line-height:1.16;
+  padding:8px 12px 8px 0;
+  max-height:none !important;
+  overflow:visible !important;
+}
+.plans .price-cell{
+  padding:6px 0 5px 10px;
+  border-left:1px solid #e1e4e8;
+}
+.plans .price{
+  font-size:var(--price-size,44px);
+  line-height:.9;
+  font-weight:700;
+}
+.plans .term{font-size:10px;font-weight:700;margin-left:2px}
+.plans .support{
+  margin-top:5px;
+  font:6.5px/1.15 Arial,sans-serif;
+  max-width:135px;
+}
+
+/* v9 — promo stack stays left and eero is given a real visible footprint */
+.promo-zone{
+  position:absolute !important;
+  left:48px !important;
+  top:var(--promo-y,500px) !important;
+  width:330px !important;
+  max-height:145px !important;
+  display:flex !important;
+  flex-direction:column !important;
+  align-items:flex-start !important;
+  gap:8px !important;
+  overflow:visible !important;
+}
+.eero-img{
+  width:300px !important;
+  height:auto !important;
+  max-height:82px !important;
+  object-fit:contain !important;
+  object-position:left center !important;
+}
+
+/* v9 — mobile belongs ABOVE the branded footer, not inside it */
+.mobile-footer-line{
+  position:absolute !important;
+  left:50% !important;
+  bottom:178px !important;
+  width:360px !important;
+  max-height:62px !important;
+  transform:translateX(-50%) !important;
+  object-fit:contain !important;
+  object-position:center center !important;
+  z-index:5 !important;
+}
+
+/* v9 — legal: minimum 6pt and enough height to show the complete copy */
+.legal{
+  position:absolute !important;
+  left:45px !important;
+  right:45px !important;
+  bottom:10px !important;
+  height:92px !important;
+  min-height:92px !important;
+  max-height:92px !important;
+  overflow:visible !important;
+  box-sizing:border-box !important;
+  padding:6px 9px !important;
+  border-radius:6px !important;
+  background:#f2f2f2 !important;
+  font-family:Arial,sans-serif !important;
+  font-size:6pt !important;
+  line-height:1.05 !important;
+  color:#778 !important;
+}
