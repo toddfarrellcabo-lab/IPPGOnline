@@ -165,3 +165,61 @@ footer{position:absolute;z-index:12;left:36px;right:36px;bottom:16px;height:145p
   font-weight:900;
   text-align:center;
 }
+
+/* v5 refinement: typography, open cards, two-line descriptions, consistent support copy */
+h1{
+  font-family:Effra, "Arial Black", Arial, sans-serif;
+  font-weight:900;
+  letter-spacing:-2.2px;
+}
+
+/* Remove the visible card outlines while preserving layout/spacing */
+.plan{
+  border-color:transparent;
+  box-shadow:none;
+  background:rgba(255,255,255,.94);
+}
+
+/* Keep speed descriptions to a controlled two-line block */
+.plan .description{
+  display:-webkit-box;
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:2;
+  overflow:hidden;
+  height:2.16em;
+  min-height:2.16em;
+  max-height:2.16em;
+  line-height:1.08;
+  margin-bottom:12px;
+}
+
+/* Identical treatment for rate + billing support copy on every speed */
+.plan .rack,
+.plan .standard-rack{
+  margin:9px 0 0 !important;
+  color:#071a33 !important;
+  font-family:Effra, Arial, sans-serif;
+  font-size:13px !important;
+  line-height:1.05;
+  font-weight:700 !important;
+}
+.plan .billing{
+  margin:5px 0 0;
+  color:#071a33;
+  font-family:Effra, Arial, sans-serif;
+  font-size:10px;
+  line-height:1.05;
+  font-weight:700;
+}
+
+/* Regular cards can be more compact than promo cards */
+.plan.standard{
+  min-height:165px;
+  padding-top:17px;
+  padding-bottom:15px;
+}
+.plan.standard .standard-price{margin-top:8px}
+
+/* Promo art is self-contained; no redundant caption below it */
+.gig-promo-note,
+.gig-promo-fallback{display:none!important}
