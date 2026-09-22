@@ -31,22 +31,16 @@ function eeroDefault(r){
 function mobileDefault(r){return !!(r.promos && r.promos.mobile)}
 function vp(r){return(r.plans||[]).filter((p,i)=>O.plans[i]!==false)}
 function ph(p,i){
-  const raw=(p.price||"").replace(/^\$/,"");
-  const mm=raw.match(/^(\d+)(?:\.(\d{2}))?$/);
-  const dollars=mm?mm[1]:raw, cents=mm&&mm[2]?mm[2]:"";
-  const speed=(p.speed||"");
-  const popular=/1\s*Gig/i.test(speed);
-  return `<div class="plan plan-card">
-    <div class="plan-main">
-      <div class="speed">${speed}</div>
-      <div class="price-block">
-        <span class="currency">$</span><span class="dollars">${dollars}</span>${cents?`<span class="cents">${cents}*</span>`:""}
-        <span class="term">${p.term||"/mo."}</span>
-        <div class="support">${p.support||""}</div>
-      </div>
-    </div>
-    <div class="speedbar"><span class="speedfill"></span>${popular?'<span class="popular">MOST POPULAR</span>':""}</div>
-    ${p.schedule?`<div class="schedule">${p.schedule}</div>`:""}
+  const price=[p.dollars,p.cents].filter(v=>v!==undefined&&v!==null&&v!=="").join(".");
+  const priceText=price ? `$${price}/mo.` : "";
+  const schedule=p.pricingSummary||p.schedule||"";
+  const reg=p.rack ? `Reg. Rate ${p.rack}` : "";
+  const billing=p.billing||"Autopay & Paperless billing required.";
+  return `<div class="plan data-row">
+    <div class="cell speed-cell">${p.speed||""}</div>
+    <div class="cell promo-cell"><strong>${priceText}</strong>${schedule?`<span>${schedule}</span>`:""}</div>
+    <div class="cell reg-cell">${reg}</div>
+    <div class="cell billing-cell">${billing}</div>
   </div>`;
 }
 function render(r){C=r;let autoKey=backKey(r),bk=O.backdrop==="auto"?autoKey:O.backdrop;

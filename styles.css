@@ -331,3 +331,80 @@
   font-size:6pt !important;
   overflow:hidden !important;
 }
+
+/* v12 — simple, durable data table inside the invisible frame */
+.content-frame{
+  left:48px !important;
+  width:520px !important;
+  height:610px !important;
+  overflow:hidden !important;
+}
+.data-table-head{
+  display:grid;
+  grid-template-columns:92px 205px 100px 123px;
+  border-bottom:1px solid #9aa3ad;
+  color:#526071;
+  font:700 7px/1.1 Arial,sans-serif;
+  text-transform:uppercase;
+}
+.data-table-head span{padding:0 6px 5px 0}
+.content-frame .plans{
+  display:block !important;
+  width:520px !important;
+}
+.content-frame .plan.data-row{
+  display:grid !important;
+  grid-template-columns:92px 205px 100px 123px !important;
+  gap:0 !important;
+  min-height:54px !important;
+  height:auto !important;
+  padding:0 !important;
+  border-bottom:1px solid #d7dce1 !important;
+  align-items:stretch !important;
+}
+.data-row .cell{
+  padding:8px 7px 7px 0;
+  box-sizing:border-box;
+  color:#061a35;
+  font:700 8px/1.15 Arial,sans-serif;
+}
+.data-row .cell + .cell{padding-left:8px;border-left:1px solid #e0e4e8}
+.data-row .speed-cell{
+  font-family:"Effra",Arial,sans-serif;
+  font-size:18px;
+  line-height:1;
+}
+.data-row .promo-cell strong{
+  display:block;
+  font-size:14px;
+  line-height:1;
+  margin-bottom:3px;
+}
+.data-row .promo-cell span{
+  display:block;
+  font-size:7.5px;
+  line-height:1.15;
+  font-weight:600;
+}
+.data-row .reg-cell,.data-row .billing-cell{font-size:7.5px;line-height:1.18}
+
+/* promos remain stacked below the rows in the same invisible frame */
+.promo-stack{margin-top:12px !important}
+.content-frame .eero-img{width:300px !important;max-height:120px !important}
+.content-frame .mobile-img{width:396px !important;max-height:68px !important;margin-top:14px !important}
+
+/* Dedicated legal zone: much taller, 6pt minimum, no clipping. */
+.legal{
+  left:45px !important;
+  right:45px !important;
+  bottom:10px !important;
+  height:158px !important;
+  min-height:158px !important;
+  max-height:none !important;
+  overflow:visible !important;
+  padding:7px 9px !important;
+  box-sizing:border-box !important;
+  font-family:Arial,sans-serif !important;
+  font-size:6pt !important;
+  line-height:1.08 !important;
+}

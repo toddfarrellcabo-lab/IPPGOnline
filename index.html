@@ -3,7 +3,10 @@
 <aside class="db no-print"><h2>Personaville Database</h2><small id="source"></small><input id="search" placeholder="Search persona, rate card, pricing set, modifier..."><div class="filters"><select id="life"><option value="">All lifecycle</option><option>Current</option><option>Scheduled</option></select><select id="pricing"><option value="">All pricing sets</option></select></div><div id="count"></div><div id="rows"></div></aside>
 <main><div class="toolbar no-print"><label>Guide <select id="guide"></select></label><button id="exportPdf">Print / Save PDF</button><button id="exportJson">Export Config</button></div>
 <article class="sheet"><img id="backdrop" class="backdrop" alt=""><div class="overlay"><section id="contentFrame" class="content-frame">
-  <section id="plans" class="plans"></section>
+  <div class="data-table-head">
+  <span>Speed</span><span>Price / Promotional Schedule</span><span>Regular Rate</span><span>Billing</span>
+</div>
+<section id="plans" class="plans"></section>
   <section id="promoZone" class="promo-stack">
     <img id="eero" class="promo-img eero-img" src="./assets/SPK-_0001_persona-3MFree.png" alt="FREE eero Plus for 3 months">
   </section>
