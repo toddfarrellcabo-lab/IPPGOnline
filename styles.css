@@ -108,3 +108,60 @@ footer{position:absolute;z-index:12;left:36px;right:36px;bottom:16px;height:145p
   font-size:10px;line-height:1.05;font-weight:700;
   color:#071a33;text-align:center;
 }
+
+/* v3 robust promotional price lockup */
+.price{
+  display:grid;
+  grid-template-columns:max-content max-content max-content;
+  align-items:start;
+  column-gap:2px;
+  height:auto;
+  width:max-content;
+  color:var(--magenta);
+}
+.currency{
+  grid-column:1;
+  font-size:28px;
+  line-height:1;
+  font-weight:900;
+  margin:1px 0 0 0;
+  padding:0;
+  align-self:start;
+}
+.dollars{
+  grid-column:2;
+  font-size:76px;
+  line-height:.74;
+  font-weight:900;
+  letter-spacing:-4px;
+  margin:0;
+}
+.per{
+  grid-column:3;
+  font-size:20px;
+  line-height:1;
+  font-weight:700;
+  margin:3px 0 0 1px;
+  align-self:start;
+}
+.term{
+  margin:3px 0 0 38px;
+  color:var(--magenta);
+  font-size:18px;
+  font-weight:700;
+  line-height:1;
+}
+.gig-promo-fallback{display:none}
+.gig-promo.asset-missing{
+  border:1.5px solid var(--magenta);
+  border-radius:12px;
+  padding:10px 12px;
+  background:white;
+}
+.gig-promo.asset-missing .gig-promo-fallback{
+  display:block;
+  color:var(--navy);
+  font-size:20px;
+  font-weight:900;
+  text-align:center;
+}
