@@ -3,57 +3,72 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>IPPGOnline Print Master</title>
+<title>IPPGOnline Poster Style</title>
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<div class="app-shell">
-  <div class="toolbar">
-    <strong>IPPGOnline</strong>
-    <label>Lifecycle
-      <select id="lifecycleSelect"><option value="Current">Current</option><option value="Scheduled">Scheduled</option><option value="All">All</option></select>
-    </label>
-    <label>Configuration
-      <select id="configurationSelect"></select>
-    </label>
-    <label><input id="fiberToggle" type="checkbox"> Fiber</label>
-    <label><input id="equipmentToggle" type="checkbox" checked> Equipment Included</label>
-    <span class="spacer"></span>
-    <button id="printBtn" type="button">Save / Print PDF</button>
-  </div>
+<div class="sheet">
+  <header class="masthead">
+    <h1>Choose Your<br><span>Fiber-Fueled Speed.</span></h1>
+    <p class="reasons"><span class="equipment" hidden>EQUIPMENT INCLUDED. </span>UNLIMITED DATA. NO CONTRACTS. WI-FI POWERED BY EERO.</p>
+  </header>
 
-  <main class="preview-stage">
-    <div class="preview-scaler" id="previewScaler">
-      <article class="page" id="ippgPage">
-        <header class="header">
-          <h1>Choose Your<br><span id="fiberWord">Fiber-Fueled</span> Speed.</h1>
-          <div class="reasons">
-            <span id="equipmentCopy" class="equipment">EQUIPMENT INCLUDED.</span>
-            <span>UNLIMITED DATA. NO CONTRACTS. WI-FI POWERED BY EERO.</span>
-          </div>
-        </header>
-
-        <section class="data-layer" id="dataLayer"><div class="data-placeholder">IPPG database content will render here after the source workbook is connected.</div></section>
-
-        <img class="spark-art" src="assets/Spark_612x450.png" alt="">
-
-        <footer class="footer">
-          <img class="awfy-logo" src="assets/Sparklight(R)-purple-cmyk_AWFY.png"
-               alt="Sparklight. Always working for you.">
-          <div class="footer-right">
-            <div class="footer-copy">
-              <div>Scan, call 1.855.692.4116</div>
-              <div>or visit Sparklight.com</div>
-            </div>
-            <img class="qr" src="assets/Sparklight_QR_60x60.jpg"
-                 alt="QR code to Sparklight Internet">
-          </div>
-        </footer>
+  <main class="content">
+    <section class="plans">
+      <article class="plan promo">
+        <div class="ribbon">Most Popular Deal</div>
+        <h2>1 Gig</h2>
+        <p class="description">Powerful, dependable internet for a home that does it all.</p>
+        <div class="offer">
+          <div class="price"><span class="currency">$</span><span class="dollars">50</span><span class="per">/mo*</span></div>
+          <div class="term">for 24 months</div>
+        </div>
+        <p class="rack">Reg. rate $95/mo.</p>
+        <p class="billing">Auto Pay &amp; Paperless billing required.</p>
       </article>
+
+      <article class="plan promo">
+        <div class="ribbon">Even Better</div>
+        <h2>2 Gig</h2>
+        <p class="description">Exceptional speed and bandwidth for the highest-demand needs.</p>
+        <div class="offer">
+          <div class="price"><span class="currency">$</span><span class="dollars">65</span><span class="per">/mo*</span></div>
+          <div class="term">for 24 months</div>
+        </div>
+        <p class="rack">Reg. rate $120/mo.</p>
+        <p class="billing">Auto Pay &amp; Paperless billing required.</p>
+      </article>
+
+      <article class="plan standard">
+        <h2>300 Mbps</h2>
+        <p class="description">Simple, dependable internet for everyday connection.</p>
+        <div class="standard-price"><span>$</span>39<sup>95</sup><small>/mo.</small></div>
+        <p class="rack">Reg. rate $65/mo.</p>
+      </article>
+
+      <article class="plan standard">
+        <h2>600 Mbps</h2>
+        <p class="description">Enhanced performance for busy homes and growing connection needs.</p>
+        <div class="standard-price"><span>$</span>59<sup>95</sup><small>/mo.</small></div>
+        <p class="rack">Reg. rate $80/mo.</p>
+      </article>
+    </section>
+
+    <img class="dog" src="assets/dog.png" alt="">
+    <div class="gig-promo" data-eligibility="1-gig-and-higher">
+      <img class="eero" src="assets/eero-plus-3-months.png" alt="Free eero Plus for 3 months">
+      <div class="gig-promo-note">Available with qualifying 1 Gig and higher Internet service.</div>
     </div>
   </main>
+
+  <footer>
+    <div class="footer-row">
+      <img class="logo" src="assets/Sparklight(R)-purple-cmyk_AWFY.png" alt="Sparklight. Always working for you.">
+      <div class="contact">Scan, call <strong>1.855.692.4116</strong><br>or visit <strong>Sparklight.com</strong></div>
+      <img class="qr" src="assets/Sparklight_QR_60x60.jpg" alt="QR code">
+    </div>
+    <div class="legal">[APPROVED LEGAL / DISCLAIMER AREA — DATA DRIVEN]</div>
+  </footer>
 </div>
-<script src="database/ippg-data.js"></script>
-<script src="app.js"></script>
 </body>
 </html>
