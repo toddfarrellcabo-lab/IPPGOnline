@@ -9,9 +9,20 @@
 <body>
 <main class="ippg-workspace">
   <div class="ippg-toolbar no-print">
+    <button id="databaseBtn" type="button">Database</button>
     <label>Guide <select id="guideSelect"></select></label>
     <button id="printBtn" type="button">Print / Save PDF</button>
   </div>
+  <aside id="databasePanel" class="ippg-db-panel no-print" hidden>
+    <div class="ippg-db-head"><div><strong>Personaville Database</strong><span id="dbSource"></span></div><button id="dbClose" type="button">×</button></div>
+    <div class="ippg-db-filters">
+      <input id="dbSearch" type="search" placeholder="Search persona, rate card, pricing set, modifier...">
+      <select id="dbLifecycle"><option value="">All lifecycle</option><option>Current</option><option>Scheduled</option></select>
+      <select id="dbPricing"><option value="">All pricing sets</option></select>
+    </div>
+    <div id="dbCount" class="ippg-db-count"></div>
+    <div id="dbRows" class="ippg-db-rows"></div>
+  </aside>
 
   <article class="ippg-sheet" id="sheet">
     <header class="ippg-masthead">
