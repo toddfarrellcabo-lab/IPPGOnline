@@ -133,3 +133,201 @@
   line-height:1.05 !important;
   color:#778 !important;
 }
+
+/* v10 footer/promo refinements */
+.mobile-footer-line{
+  left:48px !important;
+  bottom:218px !important;
+  width:396px !important; /* +10% from 360 */
+  max-height:68px !important;
+  transform:none !important;
+  object-position:left center !important;
+}
+.legal{
+  left:45px !important;
+  right:45px !important;
+  bottom:10px !important;
+  height:118px !important;
+  min-height:118px !important;
+  max-height:118px !important;
+  overflow:hidden !important;
+  font-size:6pt !important;
+  line-height:1.05 !important;
+}
+/* Explicit promo safe-zone frame */
+.promo-zone{
+  left:48px !important;
+  width:330px !important;
+  max-height:145px !important;
+}
+
+/* v11 — ONE INVISIBLE VARIABLE CONTENT FRAME */
+.content-frame{
+  position:absolute;
+  left:48px;
+  top:var(--frame-y,210px);
+  width:520px;
+  height:690px;
+  box-sizing:border-box;
+  display:flex;
+  flex-direction:column;
+  align-items:stretch;
+  overflow:hidden;
+  z-index:3;
+}
+.content-frame .plans{
+  position:static !important;
+  width:100% !important;
+  height:auto !important;
+  display:flex !important;
+  flex-direction:column;
+  flex:0 0 auto;
+}
+.content-frame .plan-card{
+  display:block !important;
+  width:100%;
+  height:auto !important;
+  min-height:0 !important;
+  padding:4px 0 7px;
+  border:0 !important;
+  box-sizing:border-box;
+}
+.plan-main{
+  display:grid;
+  grid-template-columns:290px 230px;
+  align-items:end;
+  min-height:62px;
+}
+.content-frame .speed{
+  padding:0 !important;
+  font-size:var(--speed-size,54px) !important;
+  line-height:.88 !important;
+  font-weight:800 !important;
+  letter-spacing:-2px;
+  color:#061a35;
+}
+.price-block{
+  position:relative;
+  min-height:60px;
+  padding-left:4px;
+  color:#c62b91;
+  white-space:nowrap;
+}
+.currency{
+  display:inline-block;
+  vertical-align:top;
+  margin-top:7px;
+  font-size:22px;
+  font-weight:800;
+}
+.dollars{
+  font-size:var(--price-size,62px);
+  line-height:.82;
+  font-weight:800;
+  letter-spacing:-3px;
+}
+.cents{
+  display:inline-block;
+  vertical-align:top;
+  margin-top:3px;
+  font-size:20px;
+  font-weight:800;
+}
+.price-block .term{
+  font-size:10px;
+  font-weight:800;
+  color:#ed168c;
+  margin-left:2px;
+}
+.price-block .support{
+  margin:1px 0 0 22px;
+  max-width:195px;
+  font:700 7px/1.1 Arial,sans-serif;
+  color:#061a35;
+  white-space:normal;
+}
+.speedbar{
+  position:relative;
+  width:500px;
+  height:16px;
+  margin-top:4px;
+  border-radius:10px;
+  overflow:hidden;
+  background:#0a2345;
+}
+.speedfill{
+  display:block;
+  height:100%;
+  width:74%;
+  border-radius:10px;
+  background:linear-gradient(90deg,#9e2e9e,#ed168c);
+}
+.plan-card:nth-child(1) .speedfill{width:47%}
+.plan-card:nth-child(2) .speedfill{width:74%}
+.plan-card:nth-child(3) .speedfill{width:95%}
+.plan-card:nth-child(4) .speedfill{width:95%}
+.popular{
+  position:absolute;
+  left:28px;
+  top:1px;
+  color:white;
+  font:italic 11px/14px Arial,sans-serif;
+  letter-spacing:.2px;
+}
+.content-frame .schedule{
+  padding:3px 0 0 !important;
+  font-size:var(--schedule-size,8px) !important;
+  line-height:1.1 !important;
+  color:#061a35;
+}
+
+/* 4-speed layouts compact automatically; 2/3-speed layouts get more breathing room */
+.content-frame .layout2 .plan-card{padding-bottom:16px}
+.content-frame .layout3 .plan-card{padding-bottom:10px}
+.content-frame .layout4 .plan-card{padding-bottom:5px}
+
+/* Promotions are children of the same frame and therefore stack naturally */
+.promo-stack{
+  position:static !important;
+  width:330px !important;
+  max-height:none !important;
+  margin-top:var(--promo-gap,10px);
+  display:flex !important;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:8px;
+  overflow:visible !important;
+}
+.content-frame .eero-img{
+  display:block;
+  width:330px !important;
+  height:auto !important;
+  max-height:145px !important;
+  object-fit:contain;
+  object-position:left top;
+}
+.content-frame .mobile-img{
+  position:static !important;
+  display:block;
+  width:396px !important;
+  height:auto !important;
+  max-height:68px !important;
+  margin-top:14px;
+  transform:none !important;
+  object-fit:contain;
+  object-position:left center;
+  flex:0 0 auto;
+}
+
+/* No visible frame border — the frame is layout-only. */
+.content-frame{border:0;background:transparent}
+
+/* Keep legal in its dedicated footer-safe region. */
+.legal{
+  bottom:10px !important;
+  height:118px !important;
+  min-height:118px !important;
+  max-height:118px !important;
+  font-size:6pt !important;
+  overflow:hidden !important;
+}

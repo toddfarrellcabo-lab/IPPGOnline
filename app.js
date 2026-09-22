@@ -30,12 +30,23 @@ function eeroDefault(r){
 }
 function mobileDefault(r){return !!(r.promos && r.promos.mobile)}
 function vp(r){return(r.plans||[]).filter((p,i)=>O.plans[i]!==false)}
-function ph(p){
-  const price=(p.price||"").replace(/^\$/,"");
-  return `<div class="plan table-row">
-    <div class="speed">${p.speed||""}</div>
-    <div class="schedule">${p.schedule||""}</div>
-    <div class="price-cell"><span class="price">$${price}</span><span class="term">${p.term||"/mo."}</span><div class="support">${p.support||""}</div></div>
+function ph(p,i){
+  const raw=(p.price||"").replace(/^\$/,"");
+  const mm=raw.match(/^(\d+)(?:\.(\d{2}))?$/);
+  const dollars=mm?mm[1]:raw, cents=mm&&mm[2]?mm[2]:"";
+  const speed=(p.speed||"");
+  const popular=/1\s*Gig/i.test(speed);
+  return `<div class="plan plan-card">
+    <div class="plan-main">
+      <div class="speed">${speed}</div>
+      <div class="price-block">
+        <span class="currency">$</span><span class="dollars">${dollars}</span>${cents?`<span class="cents">${cents}*</span>`:""}
+        <span class="term">${p.term||"/mo."}</span>
+        <div class="support">${p.support||""}</div>
+      </div>
+    </div>
+    <div class="speedbar"><span class="speedfill"></span>${popular?'<span class="popular">MOST POPULAR</span>':""}</div>
+    ${p.schedule?`<div class="schedule">${p.schedule}</div>`:""}
   </div>`;
 }
 function render(r){C=r;let autoKey=backKey(r),bk=O.backdrop==="auto"?autoKey:O.backdrop;
@@ -49,7 +60,7 @@ sh.style.setProperty("--speed-size",(d.speedSize||30)+"px");
 sh.style.setProperty("--schedule-size",(d.scheduleSize||11)+"px");
 sh.style.setProperty("--price-size",(d.priceSize||44)+"px");
 sh.style.setProperty("--row-gap",(d.rowGap??6)+"px");
-sh.style.setProperty("--plan-y",(d.planY||210)+"px");
+sh.style.setProperty("--frame-y",(d.planY||210)+"px");
 sh.style.setProperty("--promo-y",(d.promoY||525)+"px");$("filename").value=r.filename||r.personaID||"IPPG";$("ptoggles").innerHTML=(r.plans||[]).map((x,i)=>`<label><input data-p="${i}" type="checkbox" ${O.plans[i]===false?"":"checked"}> ${E(x.speed)}</label>`).join("");$("ptoggles").querySelectorAll("input").forEach(x=>x.onchange=()=>{O.plans[+x.dataset.p]=x.checked;render(C)});$("teero").checked=O.eero===null?eeroDefault(r):O.eero;$("tmobile").checked=O.mobile===null?mobileDefault(r):O.mobile;$("tsym").checked=symActive(r);db()}
 function db(){let q=$("search").value.toLowerCase(),l=$("life").value,p=$("pricing").value,a=R.map((r,i)=>({r,i})).filter(x=>{let r=x.r,h=[r.personaID,r.personaName,r.baseRateCard,r.pricingSet,r.modifiers].join(" ").toLowerCase();return(!q||h.includes(q))&&(!l||r.lifecycle===l)&&(!p||r.pricingSet===p)});$("count").textContent=`${a.length} of ${R.length} personas`;$("rows").innerHTML=a.map(x=>`<button class="card ${C===x.r?"active":""}" data-i="${x.i}"><div class="title">${E(x.r.personaID)} · ${E(x.r.personaName)}</div><div class="meta">${E(x.r.baseRateCard)} · ${E(x.r.pricingSet)}${x.r.modifiers?" · "+E(x.r.modifiers):""}</div><span class="tag">${E(x.r.lifecycle)}</span>${x.r.equipmentIncluded?'<span class="tag">Equipment Included</span>':""}${x.r.symSpeed?'<span class="tag">Sym Speed</span>':""}${x.r.fiber?'<span class="tag">Fiber</span>':""}</button>`).join("");$("rows").querySelectorAll(".card").forEach(b=>b.onclick=()=>{$("guide").value=b.dataset.i;O.plans={};O.backdrop="auto";O.sym=null;O.eero=null;O.mobile=null;render(R[+b.dataset.i])})}
 function download(name,text,type){let a=document.createElement("a");a.href=URL.createObjectURL(new Blob([text],{type}));a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)}
