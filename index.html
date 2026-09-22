@@ -2,6 +2,31 @@
 <div class="app">
 <aside class="db no-print"><h2>Personaville Database</h2><small id="source"></small><input id="search" placeholder="Search persona, rate card, pricing set, modifier..."><div class="filters"><select id="life"><option value="">All lifecycle</option><option>Current</option><option>Scheduled</option></select><select id="pricing"><option value="">All pricing sets</option></select></div><div id="count"></div><div id="rows"></div></aside>
 <main><div class="toolbar no-print"><label>Guide <select id="guide"></select></label><button id="exportPdf">Print / Save PDF</button><button id="exportJson">Export Config</button></div>
-<article class="sheet"><img id="backdrop" class="backdrop" alt=""><div class="overlay"><section id="plans" class="plans"></section><section id="promoZone" class="promo-zone"><div id="eero" class="eero"><div class="free">FREE</div><div class="ename">eero Plus</div><div class="eterm">for 3 months</div><div class="equal">when you choose a Gig plan.</div></div><div id="mobile" class="mobile">+ Get Unlimited Mobile <b>FREE</b> for 1 Year.</div></section><div id="legal" class="legal"></div></div></article></main>
-<aside class="builder no-print"><h2>Template Builder</h2><label>Backdrop<select id="backdropMode"><option value="auto">Auto from database</option><option value="fiberFueled">Fiber-Fueled</option><option value="fiberFueledEquip">Fiber-Fueled + Equipment</option><option value="fiberInternet">Fiber Internet</option><option value="fiberInternetEquip">Fiber Internet + Equipment</option></select></label><label>Plan layout<select id="layout"><option value="auto">Auto</option><option value="2">2 Speeds</option><option value="3">3 Speeds</option><option value="4">4 Speeds</option></select></label><h3>Promo elements</h3><label><input id="teero" type="checkbox"> FREE eero Plus</label><label><input id="tmobile" type="checkbox" checked> Mobile</label><h3>Plan visibility</h3><div id="ptoggles"></div><h3>Export</h3><label>Filename<input id="filename"></label><button id="reset">Use Database Defaults</button><p class="note">Backdrop, plans and legal default from Personaville. Controls are preview/export overrides.</p></aside>
+<article class="sheet"><img id="backdrop" class="backdrop" alt=""><div class="overlay"><section id="plans" class="plans"></section><section id="promoZone" class="promo-zone">
+<img id="eero" class="promo-img eero-img" src="./assets/SPK-_0001_persona-3MFree.png" alt="FREE eero Plus for 3 months">
+<img id="mobile" class="promo-img mobile-img" src="./assets/Plus_Free_Mobile.png" alt="Free Mobile promotion">
+</section><div id="legal" class="legal"></div></div></article></main>
+<aside class="builder no-print"><h2>Template Builder</h2><label>Backdrop<select id="backdropMode">
+<option value="auto">Auto from database</option>
+<option value="fiberFueled">Fiber-Fueled</option>
+<option value="fiberFueledEquip">Fiber-Fueled + Equipment</option>
+<option value="fiberInternet">Fiber Internet</option>
+<option value="fiberInternetEquip">Fiber Internet + Equipment</option>
+<option value="fiberFueledSym">Fiber-Fueled + Symmetrical</option>
+<option value="fiberFueledEquipSym">Fiber-Fueled + Equipment + Symmetrical</option>
+<option value="fiberInternetSym">Fiber Internet + Symmetrical</option>
+<option value="fiberInternetEquipSym">Fiber Internet + Equipment + Symmetrical</option>
+</select></label><label>Plan layout<select id="layout"><option value="auto">Auto</option><option value="2">2 Speeds</option><option value="3">3 Speeds</option><option value="4">4 Speeds</option></select></label><h3>Promo elements</h3><label><input id="teero" type="checkbox"> FREE eero Plus</label><label><input id="tmobile" type="checkbox" checked> Mobile</label><h3>Plan visibility</h3><div id="ptoggles"></div><h3>Symmetrical Speed</h3>
+<label><input id="tsym" type="checkbox"> Symmetrical connection</label>
+<label>Bug style<select id="symStyle"><option value="gauge">Gauge</option><option value="arrows">Up / Down</option></select></label>
+<h3>Typography + Spacing</h3>
+<label>Speed size <input id="speedSize" type="range" min="22" max="42" value="30"><output id="speedSizeOut">30</output></label>
+<label>Schedule size <input id="scheduleSize" type="range" min="8" max="16" value="11"><output id="scheduleSizeOut">11</output></label>
+<label>Price size <input id="priceSize" type="range" min="34" max="62" value="44"><output id="priceSizeOut">44</output></label>
+<label>Row gap <input id="rowGap" type="range" min="0" max="22" value="6"><output id="rowGapOut">6</output></label>
+<label>Plan area Y <input id="planY" type="range" min="185" max="310" value="210"><output id="planYOut">210</output></label>
+<label>Promo area Y <input id="promoY" type="range" min="430" max="690" value="525"><output id="promoYOut">525</output></label>
+<button id="savePreset" type="button">Save Layout Preset</button>
+<button id="clearPreset" type="button">Clear Saved Preset</button>
+<h3>Export</h3><label>Filename<input id="filename"></label><button id="reset">Use Database Defaults</button><p class="note">Backdrop, plans and legal default from Personaville. Controls are preview/export overrides.</p></aside>
 </div><script src="app.js"></script></body></html>
